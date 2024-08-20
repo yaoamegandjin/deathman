@@ -1,0 +1,23 @@
+caption {
+    caption-side: top;
+    padding: 25px;
+    font-weight: bold;
+    font-size: 25px;
+}
+table {
+    color: black;
+    border: 2px solid #E7E727;
+    border-collapse: collapse;
+    background-color: #E7E727;
+    box-shadow: 10px 5px 5px black;
+}
+
+th, td {
+    border: 2px solid black;
+    text-align: center;
+    padding: 25px;
+}
+
+i {
+    color: black;
+}

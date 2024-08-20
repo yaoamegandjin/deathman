@@ -1,0 +1,44 @@
+import { leaderboard } from '../server.js'
+import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import './Leaderboard.css';
+function Leaderboard() {
+    const navigate = useNavigate();
+    const [board, setBoard] = useState([]);
+    useEffect(() => {
+        leaderboard()
+        .then(data => {
+            setBoard(data);
+        })
+        .catch();
+    }, [])
+
+    const goToHome = () => {
+        navigate('/');
+    };
+
+    const champions = board.map(user => 
+        <tr key={user._id}>
+            <td>{user.username}</td>
+            <td>{user.highscore}</td>
+        </tr>);
+    return (
+        <>
+            <i onClick={goToHome} className="fa fa-home w3-xxxlarge"></i>
+            <table>
+            <caption>
+                The Champions
+            </caption>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Highscore</th>
+            </tr>
+            </thead>
+            <tbody>{champions}</tbody>
+        </table>
+        </>
+    )
+}
+
+export default Leaderboard;

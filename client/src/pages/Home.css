@@ -1,0 +1,60 @@
+.home-page-details {
+    background-color: #E7E727;
+    width: 370px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0.5em;
+    box-shadow: 10px 5px 5px black;
+}
+.home-page-details * {
+    margin: 0;
+
+}
+.home-page-details h1 {
+    font-size: 40px;
+}
+.home-page-details h1, .home-page-details p {
+    text-shadow: 10px 5px 5px black;
+}
+
+.home-page-details p, .game-routing-buttons a {
+    font-weight: bold;
+}
+.home-page-details p:first-child {
+    text-indent: 0.2em;
+}
+
+.home-page-details p:last-child {
+    text-indent: 15.2em;
+}
+
+.game-routing-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.game-routing-buttons a {
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    width: 200px;
+    color: #000000;
+    background-color: #F4FAFF;
+    border: 1px solid #F4FAFF;
+    border-radius: 0.5em;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    box-shadow: 10px 5px 5px  #000000;
+}
+
+.game-routing-buttons a:hover {
+    color:  #F4FAFF;
+    background-color: #000000;
+    border: 1px solid #000000;
+    box-shadow: 10px 5px 5px #F4FAFF;
+    cursor: pointer;
+}
