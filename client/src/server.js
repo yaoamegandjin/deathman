@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const signin = user => {
-    return axios.post("http://localhost:8000/api/signin", JSON.stringify(user), {
+    return axios.post("https://world-best-hangman-game.onrender.com/api/signin", JSON.stringify(user), {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -15,7 +15,7 @@ export const signin = user => {
 }
 
 export const forgotPassword = (email) => {
-    return axios.post("http://localhost:8000/api/forgotpassword", JSON.stringify(email), {
+    return axios.post("https://world-best-hangman-game.onrender.com/api/forgotpassword", JSON.stringify(email), {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const forgotPassword = (email) => {
 
 export const updatePassword = (newPassword) => {
     const resetToken = window.location.pathname.split("/").pop();
-    return axios.post(`http://localhost:8000/api/resetpassword/${resetToken}`, JSON.stringify(newPassword),{
+    return axios.post(`https://world-best-hangman-game.onrender.com/api/resetpassword/${resetToken}`, JSON.stringify(newPassword),{
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export const updatePassword = (newPassword) => {
     })
 };
 export const signup = user => {
-    return axios.post("http://localhost:8000/api/signup", JSON.stringify(user), {
+    return axios.post("https://world-best-hangman-game.onrender.com/api/signup", JSON.stringify(user), {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"
@@ -62,7 +62,7 @@ export const signup = user => {
 }
 export const updateUserData = (id, data) => {
     const accessToken = JSON.parse(localStorage.getItem('jwt')).token;
-    return axios.patch(`http://localhost:8000/api/${id}`, JSON.stringify(data), {
+    return axios.patch(`https://world-best-hangman-game.onrender.com/api/${id}`, JSON.stringify(data), {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export const updateUserData = (id, data) => {
 
 export const userData = (id) => {
     const accessToken = JSON.parse(localStorage.getItem('jwt')).token;
-    return axios.get(`http://localhost:8000/api/${id}`, {
+    return axios.get(`https://world-best-hangman-game.onrender.com//api/${id}`, {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export const userData = (id) => {
     })
 }
 export const leaderboard = () => {
-    return axios.get("http://localhost:8000/api/leaderboard", {
+    return axios.get("https://world-best-hangman-game.onrender.com//api/leaderboard", {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export const authenticate = (data, next) => {
 export const signout = (next) => {
     if (typeof window !== "undefined") {
         localStorage.removeItem("jwt");
-        axios.get("http://localhost:8000/api/signout")
+        axios.get("https://world-best-hangman-game.onrender.com//api/signout")
         .then(response => {
             console.log(response.data);
             next();
