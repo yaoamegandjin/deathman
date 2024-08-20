@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "WATCHPACK_POLLING=true  react-scripts start",
-    "build": "react-scripts build && npm install use-sound && npm install --save react-toastify",
+    "build": "react-scripts build && npm install use-sound && npm install --save react-toastify && npm install axios",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
