@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "proxy": "https://world-best-hangman-game-5zqs.onrender.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
