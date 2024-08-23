@@ -4,7 +4,7 @@ const jwtToken = require('jsonwebtoken');
 const { expressjwt: jwt } = require("express-jwt");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-
+const validator = require('validator');
 exports.signup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
