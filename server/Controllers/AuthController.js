@@ -4,7 +4,7 @@ const jwtToken = require('jsonwebtoken');
 const { expressjwt: jwt } = require("express-jwt");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-const validator = require('validator');
+
 exports.signup = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -18,13 +18,10 @@ exports.signup = (req, res) => {
     const username = await User.findOne({username: user.username});
     const email = await User.findOne({email: user.email});
     if (username) {
-      return res.status(500).json({error: "Username already in use." });
+      return res.status(500).json({ error: "Username already in use." });
     } else if (email) {
       return res.status(500).json({error: "Email already in use."});
-    } else if (!validator.isEmail(email)) {
-      return res.status(500).json({error: "Please enter valid email"})
-    }
-    else {
+    } else {
       user.save()
       .then(user => {
         res.json({
