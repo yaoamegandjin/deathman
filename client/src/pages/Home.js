@@ -21,6 +21,7 @@ function Home() {
                 <a href="/leaderboard">LEADERBOARD</a>
                 <a href="/signin">SIGN IN</a>
                 <a href="/signup">SIGN UP</a>
+                <a href="/guestmode">PLAY AS GUEST</a>
             </section>
         </section>
     )

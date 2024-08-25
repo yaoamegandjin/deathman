@@ -61,7 +61,7 @@ exports.updateUserData = async (req, res, next) => {
 
 exports.leaderboard = async (req, res) => {
   try {
-    const users = await User.find({}).select("username highscore").sort({highscore: -1}).limit(5);
+    const users = await User.find({}).select("username highscore").sort({highscore: -1}).limit(100);
     return res.status(200).json(users);
   } catch (error) {
     console.log(error);

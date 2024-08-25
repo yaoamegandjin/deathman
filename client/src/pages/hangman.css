@@ -176,3 +176,7 @@
         top: 40%;
     }
 } 
+
+.hint {
+    cursor: pointer;
+}

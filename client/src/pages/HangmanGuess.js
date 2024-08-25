@@ -1,7 +1,7 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { isAuthenticated, signout, userData, theWord, updateUserData} from '../server';
-import { useNavigate, Navigate } from "react-router-dom";
+import {theWord} from '../server';
+import { useNavigate} from "react-router-dom";
 import useSound from 'use-sound';
 import correctAnswer from './sounds/correct-answer.mp3'
 import wrongAnswer from './sounds/wrong-answer.mp3';
@@ -10,27 +10,18 @@ import loseSound from './sounds/lose.mp3';
 import highScoreSound from './sounds/highscore.mp3';
 import "./hangman.css";
 
-function Hangman() {
+function HangmanGuess() {
 
     const [correct] = useSound(correctAnswer);
     const [wrong] = useSound(wrongAnswer);
     const [win] = useSound(winSound, {interrupt: true});
     const [lose] = useSound(loseSound, {interrupt: true});
-    const [highscore] = useSound(highScoreSound, {interrupt: true});
+    const [highscoreMusic] = useSound(highScoreSound, {interrupt: true});
 
     const navigate = useNavigate();
-    const authenticatedUser = isAuthenticated();
     const onSignout = () => {
-        signout();
-        console.log("Signed out");
         navigate('/');
-    };
-    const [userInfo, setUserInfo] = useState({
-        _id: "",
-        email: "",
-        username: "",
-        highscore: ""
-    });
+    }
     const [word, setWord] = useState("HANGMAN");
     const [isPlaying, setIsPlaying] = useState(true);
     const getWord = () => {
@@ -40,27 +31,18 @@ function Hangman() {
         })
         .catch()
     }
-    const getUserData = useCallback(() => {
-        userData(authenticatedUser.user._id)
-        .then(data => {
-            setUserInfo(data);
-        })
-        .catch();
-    }, [authenticatedUser.user._id])
-    
     useEffect(() => {
-        getUserData();
         getWord();
-    }, [getUserData])
+    }, [])
 
     useEffect(() => {
         const welcomeMessage = () => {
-            toast(`Hello ${authenticatedUser.user.username}!`, {
+            toast(`Welcome to guest mode`, {
                 position: "top-right",
             })
         }
         welcomeMessage();
-    }, [authenticatedUser.user.username])
+    }, [])
     const letters = ["A", "B", "C", "D", "E", "F", "G",
         "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
         "S", "T", "U", "V", "W", "X", "Y", "Z"];
@@ -69,17 +51,18 @@ function Hangman() {
     const [numOfGuesses, setNumOfGuesses] = useState(0);
     
     let maskedWord = word.toUpperCase().split("").map((letter, index) => correctGuesses.includes(letter) ? <span key={index}>{letter}</span> : <span key={index}></span>);
-    const copyOfmaskedWord = word.toUpperCase().split("").map((letter) => correctGuesses.includes(letter) ? letter: "_").join("");
+    let copyOfmaskedWord = word.toUpperCase().split("").map((letter) => correctGuesses.includes(letter) ? letter: "_").join("");
     const [timer, setTimer] = useState(120);
     const [timeUp, setTimeUp] = useState(false);
     const [message, setMessage] = useState("");
-    const [showCard, setShowCard] = useState(false);
     const [clicked, setClicked] = useState([]);
     const [guesses, setGuesses] = useState([]);
     const [score, setScore] = useState(0);
+    const [highscore, setHighScore] = useState(0);
     const [showScoreCard, setShowScoreCard] = useState(false);
     const [showWord, setShowWord] = useState("");
     const [hint, setHint] = useState(0);
+    const [showCard, setShowCard] = useState(false);
     useEffect(() => {
         let interval; 
         if (!timeUp && isPlaying) {
@@ -107,7 +90,7 @@ function Hangman() {
         return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
     };
 
-    useEffect (() => {
+    useEffect(() => {
         if (!copyOfmaskedWord.includes("_")) {
             setMessage("You Win");
             win();
@@ -120,7 +103,6 @@ function Hangman() {
             setShowCard(true);
             setShowWord(`The word was ${word.toUpperCase()}`)
             setIsPlaying(false);
-            
         }
     }, [copyOfmaskedWord, timeUp, numOfGuesses, word, showWord, lose, win])
 
@@ -135,19 +117,15 @@ function Hangman() {
         setGuesses([]);
         setClicked([]);
         setShowCard(false);
-        setHint(0)
+        setHint(0);
     }
 
-    const updateHighScore = (id, score) => {
-        updateUserData(id, {highscore: score})
-            .catch();
-        getUserData();
-    }
+
     const handleQuit = () => {
-        if (score > authenticatedUser.user.highscore) {
-            updateHighScore(authenticatedUser.user._id, score);
+        if (score > highscore) {
+            setHighScore(score);
+            highscoreMusic();
             setShowScoreCard(true);
-            highscore();
         }
         else {
             navigate("/");
@@ -157,11 +135,12 @@ function Hangman() {
         setShowScoreCard(false);
         navigate("/");
     }
+
     const getHint = () => {
         if (hint < 2) {
             for (let i = 0; i < word.length; i++) {
                 if (copyOfmaskedWord[i] === "_") {
-                    let letter = word[i].toUpperCase();
+                   let letter = word[i].toUpperCase();
                    setCorrectGuesses([...correctGuesses, letter]);
                    let index = letters.indexOf(letter.toUpperCase())
                    clicked[index] = "green";
@@ -172,7 +151,6 @@ function Hangman() {
         }
     }
     return (
-        !authenticatedUser ? <Navigate to="/"/> :
         <>
             <div className='hangman-game'>
                 <i onClick={onSignout} className="fa fa-home w3-xxxlarge"></i>
@@ -180,7 +158,7 @@ function Hangman() {
                     <h2>{numOfGuesses}/6</h2>
                     <h2>{formatTime(timer)}</h2>
                     <h2 className="hint" onClick={getHint}>CLICK FOR HINT: <i class="fa fa-lightbulb-o"></i> {hint}/2</h2>
-                    <h2>HIGHSCORE: {userInfo.highscore}</h2>
+                    <h2>HIGHSCORE: {highscore}</h2>
                 </div>
                 <h2 className="score">SCORE: {score}</h2>
                 <div className="word">{maskedWord}</div>
@@ -205,9 +183,10 @@ function Hangman() {
                     }}>{letter}</button>)}
                 </div>
             </div>
-            <div className="gameover-container" style={{display: showCard ? "block" : "none"}}>
+            <div className="gameover-container" style={{display: showCard ? "block" : "none", height: "350px"}}>
                 <h1>{message}</h1>
                 <p>{showWord}</p>
+                <p>Sign up to save highscore</p>
                 <div className="gameover-button">
                     <button onClick={playGame}>CONTINUE</button>
                     <button onClick={handleQuit}>QUIT GAME</button>
@@ -224,4 +203,4 @@ function Hangman() {
     )
 };
 
-export default Hangman;
+export default HangmanGuess;

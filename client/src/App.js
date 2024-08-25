@@ -7,6 +7,7 @@ import Leaderboard from './pages/Leaderboard';
 import ForgotPassword from './pages/ForgotPassword';
 import UpdatePassword from "./pages/UpdatePassword";
 import HowToPlayPage from "./pages/HowToPlayPage";
+import HangmanGuess from "./pages/HangmanGuess";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />}/>
         <Route path="/resetpassword/:token" element={<UpdatePassword />}/>
         <Route path="/howtoplay" element={<HowToPlayPage />}/>
+        <Route path="/guestmode" element={<HangmanGuess />}/>
       </Routes>
     </Router>
   );

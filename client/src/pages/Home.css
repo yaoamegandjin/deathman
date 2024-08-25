@@ -8,6 +8,7 @@
     justify-content: space-around;
     border-radius: 0.5em;
     box-shadow: 10px 5px 5px black;
+    padding: 25px;
 }
 .home-page-details * {
     margin: 0;
