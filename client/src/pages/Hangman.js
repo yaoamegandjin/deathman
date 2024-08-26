@@ -74,7 +74,8 @@ function Hangman() {
     const [timeUp, setTimeUp] = useState(false);
     const [message, setMessage] = useState("");
     const [showCard, setShowCard] = useState(false);
-    const [clicked, setClicked] = useState([]);
+    const [disabled, setDisabled] = useState([]);
+    const [clicked, setClicked] = useState([])
     const [guesses, setGuesses] = useState([]);
     const [score, setScore] = useState(0);
     const [showScoreCard, setShowScoreCard] = useState(false);
@@ -134,6 +135,7 @@ function Hangman() {
         getWord();
         setGuesses([]);
         setClicked([]);
+        setDisabled([]);
         setShowCard(false);
         setHint(0)
     }
@@ -165,6 +167,7 @@ function Hangman() {
                    setCorrectGuesses([...correctGuesses, letter]);
                    let index = letters.indexOf(letter.toUpperCase())
                    clicked[index] = "green";
+                   disabled[index] = true;
                    setHint(hint => hint + 1);
                    break;
                 }
@@ -179,7 +182,7 @@ function Hangman() {
                 <div className="game-info">
                     <h2>{numOfGuesses}/6</h2>
                     <h2>{formatTime(timer)}</h2>
-                    <h2 className="hint" onClick={getHint}>CLICK FOR HINT: <i class="fa fa-lightbulb-o"></i> {hint}/2</h2>
+                    <h2 className="hint" onClick={getHint}>CLICK FOR HINT: <i className="fa fa-lightbulb-o"></i> {hint}/2</h2>
                     <h2>HIGHSCORE: {userInfo.highscore}</h2>
                 </div>
                 <h2 className="score">SCORE: {score}</h2>

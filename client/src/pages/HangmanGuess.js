@@ -55,6 +55,7 @@ function HangmanGuess() {
     const [timer, setTimer] = useState(120);
     const [timeUp, setTimeUp] = useState(false);
     const [message, setMessage] = useState("");
+    const [disabled, setDisabled] = useState([]);
     const [clicked, setClicked] = useState([]);
     const [guesses, setGuesses] = useState([]);
     const [score, setScore] = useState(0);
@@ -118,6 +119,8 @@ function HangmanGuess() {
         setClicked([]);
         setShowCard(false);
         setHint(0);
+        setDisabled([]);
+
     }
 
 
@@ -144,6 +147,7 @@ function HangmanGuess() {
                    setCorrectGuesses([...correctGuesses, letter]);
                    let index = letters.indexOf(letter.toUpperCase())
                    clicked[index] = "green";
+                   disabled[index] = true;
                    setHint(hint => hint + 1);
                    break;
                 }
@@ -166,19 +170,23 @@ function HangmanGuess() {
                     {letters.map((letter, index) =>
                     <button key={index} style={{backgroundColor: clicked[index]}} onClick={
                         () => {
-                            setGuesses([...guesses, letter])
-                            if (word.toUpperCase().includes(letter) && isPlaying) {
-                                setCorrectGuesses([...correctGuesses, letter]);
-                                setScore(score => score + 20)
-                                clicked[index] = "green";
-                                correct();
-                            } else if (numOfGuesses < 6 && !guesses.includes(letter) && isPlaying) {
-                                setNumOfGuesses(numOfGuesses => numOfGuesses + 1)
-                                wrong()
-                                if (score > 0) {
-                                    setScore(score => score - 10)
+                            if (disabled[index] !== true) {
+                                setGuesses([...guesses, letter])
+                                if (word.toUpperCase().includes(letter) && isPlaying) {
+                                    setCorrectGuesses([...correctGuesses, letter]);
+                                    setScore(score => score + 20)
+                                    clicked[index] = "green";
+                                    disabled[index] = true;
+                                    correct();
+                                } else if (numOfGuesses < 6 && !guesses.includes(letter) && isPlaying) {
+                                    setNumOfGuesses(numOfGuesses => numOfGuesses + 1)
+                                    wrong()
+                                    if (score > 0) {
+                                        setScore(score => score - 10)
+                                    }
+                                    clicked[index] = "red";
+                                    disabled[index] = true;
                                 }
-                                clicked[index] = "red";
                             }
                     }}>{letter}</button>)}
                 </div>
