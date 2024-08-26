@@ -106,12 +106,15 @@
     font-size: 13px;
 }
 
-@media (min-width: 621px) and (max-width: 846px) {
+@media (min-width: 621px) and (max-width: 839px) {
     .game-keyboard button {
         padding: 20px;
     }
     .word span {
         padding: 30px;
+    }
+    .game-info *, .score {
+        font-size: 20px;
     }
     
 }
@@ -161,7 +164,7 @@
     }
 }
 
-@media (max-width: 453px) {
+@media (max-width: 585px) {
     .game-keyboard button {
         padding: 5px;
     }
@@ -169,7 +172,7 @@
         padding: 10px;
     }
     .game-info *, .score {
-        font-size: 12px;
+        font-size: 10px;
     }
     .highscore-container, .gameover-container {
         left: 25%;

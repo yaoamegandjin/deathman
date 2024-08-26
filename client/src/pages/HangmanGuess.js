@@ -161,7 +161,7 @@ function HangmanGuess() {
                 <div className="game-info">
                     <h2>{numOfGuesses}/6</h2>
                     <h2>{formatTime(timer)}</h2>
-                    <h2 className="hint" onClick={getHint}>CLICK FOR HINT: <i class="fa fa-lightbulb-o"></i> {hint}/2</h2>
+                    <h2 className="hint" onClick={getHint}>CLICK FOR HINT: <i className="fa fa-lightbulb-o"></i> {hint}/2</h2>
                     <h2>HIGHSCORE: {highscore}</h2>
                 </div>
                 <h2 className="score">SCORE: {score}</h2>
