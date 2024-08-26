@@ -49,8 +49,11 @@ function Hangman() {
     }, [authenticatedUser.user._id])
     
     useEffect(() => {
-        getUserData();
         getWord();
+    }, [])
+    
+    useEffect(() => {
+        getUserData();
     }, [getUserData])
 
     useEffect(() => {
