@@ -5,10 +5,13 @@ import './Leaderboard.css';
 function Leaderboard() {
     const navigate = useNavigate();
     const [board, setBoard] = useState([]);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
+        setLoading(true);
         leaderboard()
         .then(data => {
             setBoard(data);
+            setLoading(false);
         })
         .catch();
     }, [])
@@ -23,7 +26,7 @@ function Leaderboard() {
             <td>{user.highscore}</td>
         </tr>);
     return (
-        <>
+        loading ? <p style={{color: "black"}}>Loading...</p>: <>
             <i onClick={goToHome} className="fa fa-home w3-xxxlarge"></i>
             <table>
             <caption>
