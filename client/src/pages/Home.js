@@ -12,9 +12,7 @@ function Home() {
     return (
         <section className="home-page-details">
             <section className="game-title">
-                <p>World</p>
-                <h1>Best Hangman</h1>
-                <p>Game</p>
+                <h1>Deathman</h1>
             </section>
             <section className="game-routing-buttons">
                 <a href="/howtoplay">HOW TO PLAY</a>

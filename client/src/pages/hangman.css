@@ -87,8 +87,11 @@
 .gameover-container {
     z-index: 910;
     position: absolute;
-    left: 40%;
-    top: 40%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 .hangman-game {
@@ -140,12 +143,7 @@
     }
     .game-info *, .score {
         font-size: 18px;
-    }
-    .highscore-container, .gameover-container {
-        left: 30%;
-        top: 40%;
-    }
-    
+    } 
 }
 
 @media (min-width: 453px) and (max-width: 457px) {
@@ -158,10 +156,6 @@
     .game-info *, .score {
         font-size: 17px;
     }
-    .highscore-container, .gameover-container {
-        left: 25%;
-        top: 40%;
-    }
 }
 
 @media (max-width: 585px) {
@@ -173,10 +167,6 @@
     }
     .game-info *, .score {
         font-size: 10px;
-    }
-    .highscore-container, .gameover-container {
-        left: 25%;
-        top: 40%;
     }
 } 
 
