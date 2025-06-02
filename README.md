@@ -59,7 +59,7 @@ Create a .env file in the /backend directory with the following keys:
 4. **Run the app**
   ```bash
   # Start server
-  cd backend
+  cd server
   npm start
 
   # start client
