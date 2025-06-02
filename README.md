@@ -5,7 +5,6 @@ Welcome to **Deathman**, a modern twist on the classic Hangman game built using 
 
 **🎯 Live Site:** [https://deathman.vercel.app/](https://deathman.vercel.app/)
 
----
 
 ## 🔥 Features
 
@@ -16,16 +15,12 @@ Welcome to **Deathman**, a modern twist on the classic Hangman game built using 
 - 🎨 Toast notifications and clean UI/UX
 - 🌐 Fully responsive design
 
----
-
 ## 🛠️ Built With
 
 - **MongoDB** – Database for user accounts and scores  
 - **Express.js** – Backend framework for APIs  
 - **React.js** – Frontend library for UI  
 - **Node.js** – Backend runtime environment  
-
----
 
 ## 📚 Useful Resources
 
@@ -37,7 +32,6 @@ Welcome to **Deathman**, a modern twist on the classic Hangman game built using 
 - [How to Deploy MERN Full-Stack to Render](https://medium.com/@aminnairi/how-to-deploy-mern-full-stack-to-render-6b23f56f7c2e) – Another helpful Render guide
 - [How to Implement Forgot Password Functionality with JWT Authentication](https://medium.com/@mail2pranjalrai/forgot-password-in-mern-stack-using-jwt-bc12eaf4f2f2) – For email-based password reset
 - [Using Nodemailer with Gmail](https://nodemailer.com/usage/using-gmail/) – Used to sent emails for password resets
----
 
 ## 🧪 Getting Started Locally
 
