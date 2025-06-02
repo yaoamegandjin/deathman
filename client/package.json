@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "proxy": "https://world-best-hangman-game.vercel.app/",
+  "proxy": "https://deathman.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
