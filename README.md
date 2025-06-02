@@ -43,8 +43,12 @@ Welcome to **Deathman**, a modern twist on the classic Hangman game built using 
   ```bash
   cd server
   npm install
+  npm install nodemailer
   cd ../client
   npm install
+  npm install use-sound
+  npm install --save react-toastify 
+  npm install axios 
   ```
 3. **Set up environment variables**
 Create a .env file in the /backend directory with the following keys:
