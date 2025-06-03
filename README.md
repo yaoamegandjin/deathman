@@ -51,7 +51,7 @@ Welcome to **Deathman**, a modern twist on the classic Hangman game built using 
   npm install axios 
   ```
 3. **Set up environment variables**
-Create a .env file in the /backend directory with the following keys:
+Create a .env file in the /server directory with the following keys:
   ```env
   MONGO_URL=your_mongodb_connection_string
   PORT=8000
